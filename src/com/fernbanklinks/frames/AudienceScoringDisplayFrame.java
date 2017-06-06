@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by Jonathan on 6/1/2017.
@@ -37,6 +37,13 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
         table.setCellSelectionEnabled(false);
         table.setFocusable(false);
 
+
+        //table.getCellRenderer(0, 0).getTableCellRendererComponent()
+        table.getTableHeader().setBackground(new Color(19, 57, 192));
+
+        table.repaint();
+
+
         setSize(1200, 800);
         addKeyListener(this);
 
@@ -48,19 +55,18 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
-        label.setFont(new Font("Bebas Neue Regular", Font.PLAIN, 30));
+        label.setFont(new Font("Bebas Neue Bold", Font.PLAIN, 30));
         label.setBorder(paddingBorder);
         //label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setAlignmentX(CENTER_ALIGNMENT);
-        String imageName = "C:/Users/Jonathan/Documents/General Code/LINKS_logo_tp.png";
+        ;
 
-        ImageIcon image = new ImageIcon(ImageIO.read(new File(imageName)));
-        Image image1 = image.getImage().getScaledInstance(224, 130, Image.SCALE_SMOOTH);
-        image = new ImageIcon(image1);
+        BufferedImage image = ImageIO.read(this.getClass().getClassLoader().getResource("com/fernbanklinks/main/logo.png"));
+        Image image1 = image.getScaledInstance(224, 130, Image.SCALE_SMOOTH);
 
-        icon.setIcon(image);
+        icon.setIcon(new ImageIcon(image1));
         icon.setSize(200, 100);
-        //icon.setHorizontalAlignment(SwingConstants.CENTER);
+        icon.setHorizontalAlignment(SwingConstants.CENTER);
         icon.setAlignmentX(CENTER_ALIGNMENT);
         icon.setBorder(paddingBorder);
 

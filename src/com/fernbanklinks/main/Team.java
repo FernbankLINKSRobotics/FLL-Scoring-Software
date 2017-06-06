@@ -1,4 +1,4 @@
-package com.fernbanklinks;
+package com.fernbanklinks.main;
 
 import java.util.Arrays;
 

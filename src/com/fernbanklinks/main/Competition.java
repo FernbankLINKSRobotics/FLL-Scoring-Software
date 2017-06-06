@@ -1,6 +1,5 @@
 package com.fernbanklinks.main;
 
-import com.fernbanklinks.Team;
 import com.fernbanklinks.frames.AudienceScoringDisplayFrame;
 import com.fernbanklinks.tableModels.AudienceDisplayTableModel;
 import com.fernbanklinks.tableModels.ScoreEntryTableModel;
@@ -104,4 +103,5 @@ public class Competition {
 
         audienceTable.repaint();
     }
+
 }

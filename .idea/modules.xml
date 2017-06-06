@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FLL-Scoring-Software.iml" filepath="$PROJECT_DIR$/FLL-Scoring-Software.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FLLScoringSoftware.iml" filepath="$PROJECT_DIR$/FLLScoringSoftware.iml" />
     </modules>
   </component>
 </project>

@@ -18,6 +18,7 @@ public class ScoringEntryDisplay extends JFrame {
         setSize(600, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+
         setLayout(new FlowLayout());
 
 

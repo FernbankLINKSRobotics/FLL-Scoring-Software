@@ -1,16 +1,10 @@
 package com.fernbanklinks.tableModels;
 
-import com.fernbanklinks.Team;
 import com.fernbanklinks.main.Competition;
-import javafx.scene.control.Tab;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.TreeMap;
 
 public class ScoreEntryTableModel extends AbstractTableModel implements TableModelListener{
 
@@ -92,4 +86,6 @@ public class ScoreEntryTableModel extends AbstractTableModel implements TableMod
 
         tableChanged(new TableModelEvent(this, row, row, column, TableModelEvent.UPDATE));
     }
+
+
 }

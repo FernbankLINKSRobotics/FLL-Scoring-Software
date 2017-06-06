@@ -1,5 +1,7 @@
 package com.fernbanklinks.main;
 
+import com.fernbanklinks.main.Competition;
+
 /**
  * Created by Jonathan on 6/1/2017.
  */
