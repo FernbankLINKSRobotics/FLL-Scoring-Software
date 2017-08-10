@@ -50,19 +50,21 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
         Border paddingBorder = BorderFactory.createEmptyBorder(10,10,10,10);
 
         table = tableToDisplay;
-        table.setGridColor(Color.BLACK);
 
         setupTable();
         setupTopPanel(paddingBorder);
 
         setSize(1200, 800);
+
+        //Enables us to use the keyboard
         addKeyListener(this);
 
         setResizable(false);
 
+        //Full-Screen Stuff
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);//Makes the Close Button do Nothing
 
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
@@ -85,6 +87,7 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
 
     //This method will setup the JTable that will be displayed on the screen
     private void setupTable(){
+        table.setGridColor(Color.BLACK);
         table.setPreferredSize(new Dimension(1400, 720));
         table.getColumnModel().getColumn(0).setPreferredWidth(150);
         table.getColumnModel().getColumn(1).setPreferredWidth(500);
@@ -109,6 +112,24 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
 
         table.repaint();
 
+    }
+
+    //Replaces the Table with the Logo for the last round
+    private void replaceTableWithLogo() throws IOException{
+        remove(table);
+
+        BufferedImage image = ImageIO.read(this.getClass().getClassLoader().getResource("com/fernbanklinks/main/logo.png"));
+        Image image1 = image.getScaledInstance(224, 130, Image.SCALE_SMOOTH);
+
+        Border paddingBorder = BorderFactory.createEmptyBorder(10,10,10,10);
+
+
+        icon.setIcon(new ImageIcon(image1));
+        icon.setSize(200, 100);
+        icon.setHorizontalAlignment(JLabel.CENTER);
+        icon.setBorder(paddingBorder);
+
+        add(icon);
     }
 
     private void setupTopPanel(Border padding) throws IOException{
@@ -149,8 +170,11 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
         if(event.getKeyCode() == KeyEvent.VK_Q){
             System.exit(0);
         } else if(event.getKeyCode() == KeyEvent.VK_F){
-            setExtendedState(JFrame.MAXIMIZED_BOTH);
-            setUndecorated(true);
+            try {
+                replaceTableWithLogo();
+            } catch(IOException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 

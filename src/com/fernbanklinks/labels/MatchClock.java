@@ -62,13 +62,10 @@ public class MatchClock extends JLabel implements ActionListener{
     }
 
     private void setupSounds() throws Exception{
-        startMatchInputStream = new FileInputStream("src/com/fernbanklinks/labels/matchstart.wav");
-        endMatchInputStream = new FileInputStream("src/com/fernbanklinks/labels/matchend.wav");
-        warningInputStream = new FileInputStream("src/com/fernbanklinks/labels/endgame.wav");
-
-        startMatchSoundStream = new AudioStream(startMatchInputStream);
-        endMatchSoundStream = new AudioStream(endMatchInputStream);
-        warningSoundStream = new AudioStream(warningInputStream);
+        //We have to setup this way otherwise an exception will be incurred
+        startMatchSoundStream = new AudioStream(getClass().getClassLoader().getResourceAsStream("com/fernbanklinks/labels/matchstart.wav"));
+        endMatchSoundStream = new AudioStream(getClass().getClassLoader().getResourceAsStream("com/fernbanklinks/labels/matchend.wav"));
+        warningSoundStream = new AudioStream(getClass().getClassLoader().getResourceAsStream("com/fernbanklinks/labels/endgame.wav"));
 
         startMatchThread = new SoundPlayingThread(startMatchSoundStream);
         endMatchThread = new SoundPlayingThread(endMatchSoundStream);
