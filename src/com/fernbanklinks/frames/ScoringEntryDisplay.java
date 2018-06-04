@@ -3,13 +3,9 @@ package com.fernbanklinks.frames;
 import com.fernbanklinks.labels.MatchClock;
 import com.fernbanklinks.labels.MatchCounter;
 import com.fernbanklinks.main.SoundPlayingThread;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import sun.audio.AudioStream;
 
-import javax.sound.sampled.AudioInputStream;
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,18 +16,19 @@ import java.io.InputStream;
  * Created by Jonathan on 6/1/2017.
  */
 public class ScoringEntryDisplay extends JFrame implements ActionListener {
-    private JTable table;
+
+	private static final long serialVersionUID = -3938203920601301621L;
+
+	private JTable table;
 
     private JButton incrementMatchButton = new JButton("+1 Match"),
                     incrementRoundButton = new JButton("+1 Round"),
-                    startTimerButton = new JButton("Start Timer"),
-                    stopTimerButton = new JButton("Stop Timer"),
                     decrementMatchButton = new JButton("-1 Match"),
-                    decrementRoundButton = new JButton("-1 Round");
-
+                    decrementRoundButton = new JButton("-1 Round"),
+                    stopTimerButton      = new JButton("Stop Timer"),
+                    startTimerButton     = new JButton("Start Timer");
 
     private InputStream fieldFaultInputStream;
-    private AudioInputStream fieldFaultSoundStream;
     private SoundPlayingThread fieldFaultThread;
 
     private JPanel buttonPanel = new JPanel();
@@ -65,8 +62,8 @@ public class ScoringEntryDisplay extends JFrame implements ActionListener {
         incrementRoundButton.setActionCommand("Add Round");
         decrementMatchButton.setActionCommand("Remove Match");
         decrementRoundButton.setActionCommand("Remove Round");
-        startTimerButton.setActionCommand("Start Timer");
-        stopTimerButton.setActionCommand("Stop Timer");
+        startTimerButton    .setActionCommand("Start Timer");
+        stopTimerButton     .setActionCommand("Stop Timer");
 
         incrementMatchButton.setAlignmentX(JButton.CENTER);
         incrementRoundButton.setAlignmentX(JButton.CENTER);
@@ -75,8 +72,8 @@ public class ScoringEntryDisplay extends JFrame implements ActionListener {
         incrementRoundButton.addActionListener(this);
         decrementMatchButton.addActionListener(this);
         decrementRoundButton.addActionListener(this);
-        startTimerButton.addActionListener(this);
-        stopTimerButton.addActionListener(this);
+        startTimerButton    .addActionListener(this);
+        stopTimerButton     .addActionListener(this);
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 
@@ -88,9 +85,9 @@ public class ScoringEntryDisplay extends JFrame implements ActionListener {
         JPanel topButtonPanel = new JPanel(new FlowLayout());
         JPanel bottomButtonPanel = new JPanel(new FlowLayout());
 
-        topButtonPanel.add(incrementMatchButton);
-        topButtonPanel.add(incrementRoundButton);
-        topButtonPanel.add(startTimerButton);
+        topButtonPanel   .add(incrementMatchButton);
+        topButtonPanel   .add(incrementRoundButton);
+        topButtonPanel   .add(startTimerButton);
         bottomButtonPanel.add(decrementMatchButton);
         bottomButtonPanel.add(decrementRoundButton);
         bottomButtonPanel.add(stopTimerButton);

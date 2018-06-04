@@ -39,10 +39,10 @@ public class Competition {
         }
 
         audienceModel = new AudienceDisplayTableModel(this);
-        scoreModel = new ScoreEntryTableModel(this);
+        scoreModel    = new ScoreEntryTableModel(this);
 
         audienceTable = new JTable(audienceModel);
-        entryTable = new JTable(scoreModel);
+        entryTable    = new JTable(scoreModel);
 
         try {
             audienceDisplay = new AudienceScoringDisplayFrame(audienceTable, counter, clock);
@@ -70,10 +70,10 @@ public class Competition {
         }
 
         audienceModel = new AudienceDisplayTableModel(this);
-        scoreModel = new ScoreEntryTableModel(this);
+        scoreModel    = new ScoreEntryTableModel(this);
 
         audienceTable = new JTable(audienceModel);
-        entryTable = new JTable(scoreModel);
+        entryTable    = new JTable(scoreModel);
 
         //This is neccesary because grabbing the logo can lead to an ImageIO exception.
         try {

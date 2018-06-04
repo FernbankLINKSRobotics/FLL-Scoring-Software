@@ -1,6 +1,7 @@
 package com.fernbanklinks.main;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Jonathan on 6/3/2017.
@@ -8,52 +9,38 @@ import java.util.Arrays;
 public class Team {
     private String teamName;
 
-    private int run1, run2, run3;
+    private List<Integer> runs;
 
     public int ranking;
 
     public Team(String name){
         teamName = name;
 
-        run1 = 0;
-        run2 = 0;
-        run3 = 0;
+        runs = Arrays.asList(0, 0, 0);
 
         ranking = 0;
     }
 
     public int getHighScore(){
-        int[] scores = {run1, run2, run3};
-        Arrays.sort(scores);
-
-        System.out.print(scores[0] + ":" + scores[1] + ":" + scores[2]);
-
-        return scores[2];
+        int max = 0;
+        String tmp = "";
+        
+        for(int r: runs) {
+        		tmp += String.valueOf(r + " ");
+        		if(r > max) { max = r; }
+        }
+        
+        System.out.println(tmp);
+        return max;
     }
 
     public void updateScores(int col, int score){
         System.out.println("New Score:" + score);
-
-        switch(col){
-            case 2:
-                run1 = score;
-                break;
-            case 3:
-                run2 = score;
-                break;
-            case 4:
-                run3 = score;
-                break;
-        }
-
-
-
-
+        runs.set(col-2, score);
     }
 
     public Object[] getArrayRepresentation(){
         Object[] returnArray = {0, teamName, 0, 0, 0, 0};
         return returnArray;
     }
-
 }

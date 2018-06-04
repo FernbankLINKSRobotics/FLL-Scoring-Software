@@ -2,12 +2,9 @@ package com.fernbanklinks.frames;
 
 import com.fernbanklinks.labels.MatchClock;
 import com.fernbanklinks.labels.MatchCounter;
-import com.fernbanklinks.main.SoundPlayingThread;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
-import sun.audio.AudioStream;
+import com.fernbanklinks.main.Main;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -16,20 +13,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by Jonathan on 6/1/2017.
  */
 public class AudienceScoringDisplayFrame extends JFrame implements ActionListener, KeyListener {
-    private JTable table;
+
+	private static final long serialVersionUID = -2714794756289966809L;
+
+	private JTable table;
 
     private JLabel label = new JLabel("Fernbank LINKS FLL Summer Camp Tournament"),
-                    icon = new JLabel(),
-                    tempMatchCounter = new JLabel("Match 5"),
-                    tempRoundCounter = new JLabel("Round 2");
+                    icon = new JLabel();
 
     private MatchClock clock;
 
@@ -73,16 +69,12 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
         //label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setAlignmentX(CENTER_ALIGNMENT);
 
-
-
         mainPanel.add(topPanel);
         mainPanel.add(label);
         mainPanel.add(table);
 
 
         add(mainPanel);
-
-
     }
 
     //This method will setup the JTable that will be displayed on the screen
@@ -100,8 +92,12 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
 
         //table.setPreferredSize(new Dimension(1100,900));
 
-        table.setFont(new Font("Oswald", Font.PLAIN, 40));
-        table.setRowHeight(45);
+        int fontSize = 40;
+        if((Main.kteamCount-10) <= 0) { fontSize = 40; }
+        else { fontSize = (int) 40-(Main.kteamCount-10); }
+        
+        table.setFont(new Font("Oswald", Font.PLAIN, fontSize));
+        table.setRowHeight((int) 720/(Main.kteamCount+1));
         table.setAlignmentX(CENTER_ALIGNMENT);
         table.setCellSelectionEnabled(false);
         table.setFocusable(false);
@@ -119,13 +115,13 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
         remove(table);
 
         BufferedImage image = ImageIO.read(this.getClass().getClassLoader().getResource("com/fernbanklinks/main/logo.png"));
-        Image image1 = image.getScaledInstance(224, 130, Image.SCALE_SMOOTH);
+        Image image1 = image.getScaledInstance(250, 175, Image.SCALE_SMOOTH);
 
         Border paddingBorder = BorderFactory.createEmptyBorder(10,10,10,10);
 
 
         icon.setIcon(new ImageIcon(image1));
-        icon.setSize(200, 100);
+        icon.setSize(200, 140);
         icon.setHorizontalAlignment(JLabel.CENTER);
         icon.setBorder(paddingBorder);
 
@@ -137,10 +133,10 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
         topPanel.setLayout(new GridLayout(1, 3, 3, 3));
 
         BufferedImage image = ImageIO.read(this.getClass().getClassLoader().getResource("com/fernbanklinks/main/logo.png"));
-        Image image1 = image.getScaledInstance(224, 130, Image.SCALE_SMOOTH);
+        Image image1 = image.getScaledInstance(250, 175, Image.SCALE_SMOOTH);
 
         icon.setIcon(new ImageIcon(image1));
-        icon.setSize(200, 100);
+        icon.setSize(200, 140);
         icon.setHorizontalAlignment(JLabel.CENTER);
         icon.setBorder(padding);
 
@@ -167,15 +163,19 @@ public class AudienceScoringDisplayFrame extends JFrame implements ActionListene
     }
 
     public void keyPressed(KeyEvent event){
-        if(event.getKeyCode() == KeyEvent.VK_Q){
+        if(event.getKeyCode() == KeyEvent.VK_Q
+        || event.getKeyCode() == KeyEvent.VK_ESCAPE){
             System.exit(0);
-        } else if(event.getKeyCode() == KeyEvent.VK_F){
+        } 
+        /*
+        else if(event.getKeyCode() == KeyEvent.VK_F){
             try {
                 replaceTableWithLogo();
             } catch(IOException e){
                 System.out.println(e.getMessage());
             }
         }
+        */
     }
 
     public void keyReleased(KeyEvent event){

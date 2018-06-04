@@ -1,31 +1,26 @@
 package com.fernbanklinks.labels;
 
 import com.fernbanklinks.main.SoundPlayingThread;
-import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.InputStream;
 
 /**
  * Created by Jonathan on 6/7/2017.
  */
 public class MatchClock extends JLabel implements ActionListener{
 
-    private InputStream startMatchInputStream,
-                        endMatchInputStream,
-                        warningInputStream;
+	private static final long serialVersionUID = -5262752269064677710L;
 
-    private AudioStream startMatchSoundStream,
+	private AudioStream startMatchSoundStream,
                         endMatchSoundStream,
                         warningSoundStream;
 
     public SoundPlayingThread startMatchThread,
-                               endMatchThread,
-                               warningMatchThread;
+                              endMatchThread,
+                              warningThread;
 
     private double timeRemaining;
     private double initialTime;
@@ -64,12 +59,12 @@ public class MatchClock extends JLabel implements ActionListener{
     private void setupSounds() throws Exception{
         //We have to setup this way otherwise an exception will be incurred
         startMatchSoundStream = new AudioStream(getClass().getClassLoader().getResourceAsStream("com/fernbanklinks/labels/matchstart.wav"));
-        endMatchSoundStream = new AudioStream(getClass().getClassLoader().getResourceAsStream("com/fernbanklinks/labels/matchend.wav"));
-        warningSoundStream = new AudioStream(getClass().getClassLoader().getResourceAsStream("com/fernbanklinks/labels/endgame.wav"));
+        endMatchSoundStream   = new AudioStream(getClass().getClassLoader().getResourceAsStream("com/fernbanklinks/labels/matchend.wav"));
+        warningSoundStream    = new AudioStream(getClass().getClassLoader().getResourceAsStream("com/fernbanklinks/labels/endgame.wav"));
 
-        startMatchThread = new SoundPlayingThread(startMatchSoundStream);
-        endMatchThread = new SoundPlayingThread(endMatchSoundStream);
-        warningMatchThread = new SoundPlayingThread(warningSoundStream);
+        startMatchThread   = new SoundPlayingThread(startMatchSoundStream);
+        endMatchThread     = new SoundPlayingThread(endMatchSoundStream);
+        warningThread      = new SoundPlayingThread(warningSoundStream);
 
     }
 
@@ -81,7 +76,7 @@ public class MatchClock extends JLabel implements ActionListener{
             timeRemaining -= 1;
 
             if(timeRemaining == 30){
-                warningMatchThread.start();
+                warningThread.start();
             }
         }
 
@@ -127,9 +122,7 @@ public class MatchClock extends JLabel implements ActionListener{
         setText(start);
     }
 
-    public void startTimer(){
-
-
+    public void startTimer() {
         timer.start();
         startMatchThread.start();
     }

@@ -2,10 +2,7 @@ package com.fernbanklinks.tableModels;
 
 import com.fernbanklinks.main.Competition;
 
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 import java.util.Arrays;
 
 /**
@@ -15,7 +12,9 @@ import java.util.Arrays;
  * audience.
  */
 public class AudienceDisplayTableModel extends AbstractTableModel  {
-    private String[] columnNames = {"Rank", "Team Name", "Run 1",
+	private static final long serialVersionUID = -4674293515451511802L;
+
+	private String[] columnNames = {"Rank", "Team Name", "Run 1",
             "Run 2", "Run 3", "High Score"};
 
     private Object[][] data;
@@ -102,13 +101,10 @@ public class AudienceDisplayTableModel extends AbstractTableModel  {
     public void updateRankings(){
        //Get High Scores
         for(int i = 1; i < data.length; i++){
-            int run1 = Integer.parseInt(data[i][2].toString());
-            int run2 = Integer.parseInt(data[i][3].toString());
-            int run3 = Integer.parseInt(data[i][4].toString());
+        		int[] scores = {};
+            for(int j=0; j<2; j++) { scores[j] = Integer.parseInt(data[i][j+2].toString()); }
 
-            int[] scores = {run1, run2, run3};
             Arrays.sort(scores); //This will sort the scores.
-
             setValueAt(scores[2], i, 5); //Set the high score.
         }
 
@@ -125,9 +121,7 @@ public class AudienceDisplayTableModel extends AbstractTableModel  {
         }
 
         //Places the ranks into the table.
-        for(int row = 1; row < data.length; row++){
-            setValueAt(row, row, 0);
-        }
+        for(int row = 1; row < data.length; row++){ setValueAt(row, row, 0); }
     }
 
 }

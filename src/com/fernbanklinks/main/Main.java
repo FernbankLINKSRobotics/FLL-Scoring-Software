@@ -1,5 +1,8 @@
 package com.fernbanklinks.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fernbanklinks.labels.MatchClock;
 import com.fernbanklinks.labels.MatchCounter;
 
@@ -7,17 +10,17 @@ import com.fernbanklinks.labels.MatchCounter;
  * Created by Jonathan on 6/1/2017.
  */
 public class Main {
+	
+	public static final int kteamCount = 10;
 
     public static void main(String[] args){
         //Array where the team names will live
-        String[] teamNames = {"Mega Robot", "Snail Bots", "Willie Wonka Chocolate Factory", "Techno Paths",
-                                "Team Name", "RoboRobots", "?", "Cool Awesome Machine", "C4BX", "Pizza", "Bearacougars",
-                                "Dewpiders", "Killer Kittens", "NR", "R.O.V.E.R."};
-
+        List<String> teamNames = new ArrayList<String>(kteamCount);
+        for(int i=0; i<kteamCount; i++) { teamNames.add(""); }
 
         MatchCounter counter = new MatchCounter();
-        MatchClock clock = new MatchClock(150);
+        MatchClock   clock   = new MatchClock(150);
 
-        Competition competition = new Competition(teamNames, counter, clock);
+        Competition competition = new Competition(teamNames.toArray(new String[teamNames.size()]), counter, clock);
     }
 }

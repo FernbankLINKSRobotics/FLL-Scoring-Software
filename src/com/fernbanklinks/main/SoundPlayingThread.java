@@ -16,7 +16,4 @@ public class SoundPlayingThread extends Thread{
     public void run(){
         AudioPlayer.player.start(sound);
     }
-
-
-
 }

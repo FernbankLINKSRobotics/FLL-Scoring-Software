@@ -2,15 +2,13 @@ package com.fernbanklinks.labels;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by Jonathan on 6/8/2017.
  */
 public class MatchCounter extends JPanel{
 
-    private JPanel panel;
+	private static final long serialVersionUID = 413750559470338056L;
 
     private int matchNumber;
     private int roundNumber;
@@ -40,26 +38,15 @@ public class MatchCounter extends JPanel{
         add(roundLabel);
     }
 
-    public void incrementMatchCount(){
-        matchNumber += 1;
-        matchLabel.setText("Match " + matchNumber);
-    }
+    public void incrementMatchCount(){ matchLabel.setText("Match " + (matchNumber += 1)); }
+    public void incrementRoundCount(){ roundLabel.setText("Round " + (roundNumber += 1)); }
 
-    public void incrementRoundCount(){
-        roundNumber += 1;
-        roundLabel.setText("Round " + roundNumber);
-    }
-
-    public void decrementMatchCount(){
-        matchNumber -= 1;
-        matchLabel.setText("Match " + matchNumber);
-    }
-
+    public void decrementMatchCount(){ 
+    		if(matchNumber-1 <= 0) { matchNumber = 2; } 
+    		matchLabel.setText("Match " + (matchNumber -= 1)); 
+    	}
     public void decrementRoundCount(){
-        roundNumber -= 1;
-        roundLabel.setText("Round " + roundNumber);
-    }
-
-
-
+    		if(roundNumber-1 <= 0) { roundNumber = 2; } 
+    		roundLabel.setText("Round " + (roundNumber -= 1));
+    	}
 }
