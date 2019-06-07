@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    jcenter()  
+}
+
+dependencies {
+    compile 'com.google.guava:guava:21.0'  
+    testCompile 'junit:junit:4.12'         
+}
+
+/*
+compileJava {
+    options.forkOptions.javaHome = file(System.properties['java.home'])
+}
+*/
+
+mainClassName = 'com/fernbanklinks/main/Main' 
